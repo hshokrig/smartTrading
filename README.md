@@ -5,3 +5,5 @@
 - remove pictures regularly to clear the space
 
 # AI
+- Inference
+- RL 
