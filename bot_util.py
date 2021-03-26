@@ -58,7 +58,7 @@ def mean_return_1D(symbol, days_future=30, reference=10000, price_change_bound_t
         else:
             plt.xticks(rotation=300)
 
-        file_address = './src/images/mean_return_{}_{}_1D.png'.format(symbol.lower(), days_future)
+        file_address = cwd+'/src/images/mean_return_{}_{}_1D.png'.format(symbol.lower(), days_future)
         fig.savefig(file_address)
 
         return file_address, number_of_events, reference_change
