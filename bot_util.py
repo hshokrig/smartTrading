@@ -12,9 +12,10 @@ import six
 
 
 def get_history(symbol):
+    cwd = os.getcwd()
     day_technicals = yf.Ticker(symbol).history(interval='1d', period='10y', actions=False)
     day_technicals['ChangePercentage'] = (day_technicals['Close'] - day_technicals['Open'])/day_technicals['Open'] * 100
-    day_technicals.to_csv('./src/datasets/{}_daily.csv'.format(symbol.lower()))
+    day_technicals.to_csv(cwd+'/src/datasets/{}_daily.csv'.format(symbol.lower()))
     return day_technicals
 
 
