@@ -19,9 +19,10 @@ def get_history(symbol):
 
 
 def mean_return_1D(symbol, days_future=30, reference=10000, price_change_bound_tr=0.2):
-    path = './src/datasets/{}_daily.csv'.format(symbol)
+    cwd = os.getcwd()
+    path = cwd+'/src/datasets/{}_daily.csv'.format(symbol)
     if os.path.isfile(path):
-        data = pd.read_csv('./src/datasets/{}_daily.csv'.format(symbol))
+        data = pd.read_csv(cwd+'/src/datasets/{}_daily.csv'.format(symbol))
     else:
         data = get_history(symbol)
 
