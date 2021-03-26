@@ -48,4 +48,12 @@ async def mean_return_kD(ctx, symbol: str, days_future: int, days_past: int):
     await ctx.send('{} events in the past with {:.2f}% changes over the last {} days'.format(number_of_events, reference_change, days_past))
     await ctx.send(file=discord.File(file_address))
 
+
+@bot.command(name='pre_ah_change', help='premarket/after hours change price.')
+async def pre_ah_change(ctx, symbol: str):
+    change_msg =  bot_util.pre_ah_change(symbol)
+    await ctx.send(change_msg)
+    
+
+
 bot.run(TOKEN)
