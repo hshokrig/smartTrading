@@ -67,9 +67,10 @@ def mean_return_1D(symbol, days_future=30, reference=10000, price_change_bound_t
 
 
 def mean_return_kD(symbol, days_future=30, days_past=5, price_change_bound_tr=0.2):
-    path = './src/datasets/{}_daily.csv'.format(symbol)
+    cwd = os.getcwd()
+    path = cwd+'/src/datasets/{}_daily.csv'.format(symbol)
     if os.path.isfile(path):
-        data = pd.read_csv('./src/datasets/{}_daily.csv'.format(symbol))
+        data = pd.read_csv(cwd+'/src/datasets/{}_daily.csv'.format(symbol))
     else:
         data = get_history(symbol)
 
@@ -102,7 +103,7 @@ def mean_return_kD(symbol, days_future=30, days_past=5, price_change_bound_tr=0.
         else:
             plt.xticks(rotation=300)
 
-        file_address = './src/images/mean_return_{}_{}_{}D.png'.format(symbol.lower(), days_future, days_past)
+        file_address = cwd+'/src/images/mean_return_{}_{}_{}D.png'.format(symbol.lower(), days_future, days_past)
         fig.savefig(file_address)
 
         return file_address, number_of_events, reference_change
