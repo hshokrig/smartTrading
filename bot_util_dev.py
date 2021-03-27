@@ -7,22 +7,19 @@ import os
 
 import requests
 from bs4 import BeautifulSoup
-
-
-cwd = '/home/ubuntu/StockMarket/GitRepo/smartTrading'
-
+import six
 
 def get_history(symbol):
     day_technicals = yf.Ticker(symbol).history(interval='1d', period='10y', actions=False)
     day_technicals['ChangePercentage'] = (day_technicals['Close'] - day_technicals['Open'])/day_technicals['Open'] * 100
-    day_technicals.to_csv(cwd+'/src/datasets/{}_daily.csv'.format(symbol.lower()))
+    day_technicals.to_csv('./src/datasets/{}_daily.csv'.format(symbol.lower()))
     return day_technicals
 
 
 def mean_return_1D(symbol, days_future=30, reference=10000, price_change_bound_tr=0.2):
-    path = cwd+'/src/datasets/{}_daily.csv'.format(symbol)
+    path = './src/datasets/{}_daily.csv'.format(symbol)
     if os.path.isfile(path):
-        data = pd.read_csv(cwd+'/src/datasets/{}_daily.csv'.format(symbol))
+        data = pd.read_csv('./src/datasets/{}_daily.csv'.format(symbol))
     else:
         data = get_history(symbol)
 
@@ -58,7 +55,7 @@ def mean_return_1D(symbol, days_future=30, reference=10000, price_change_bound_t
         else:
             plt.xticks(rotation=300)
 
-        file_address = cwd+'/src/images/mean_return_{}_{}_1D.png'.format(symbol.lower(), days_future)
+        file_address = './src/images/mean_return_{}_{}_1D.png'.format(symbol.lower(), days_future)
         fig.savefig(file_address)
 
         return file_address, number_of_events, reference_change
@@ -67,9 +64,9 @@ def mean_return_1D(symbol, days_future=30, reference=10000, price_change_bound_t
 
 
 def mean_return_kD(symbol, days_future=30, days_past=5, price_change_bound_tr=0.2):
-    path = cwd+'/src/datasets/{}_daily.csv'.format(symbol)
+    path = './src/datasets/{}_daily.csv'.format(symbol)
     if os.path.isfile(path):
-        data = pd.read_csv(cwd+'/src/datasets/{}_daily.csv'.format(symbol))
+        data = pd.read_csv('./src/datasets/{}_daily.csv'.format(symbol))
     else:
         data = get_history(symbol)
 
@@ -102,37 +99,38 @@ def mean_return_kD(symbol, days_future=30, days_past=5, price_change_bound_tr=0.
         else:
             plt.xticks(rotation=300)
 
-        file_address = cwd+'/src/images/mean_return_{}_{}_{}D.png'.format(symbol.lower(), days_future, days_past)
+        file_address = './src/images/mean_return_{}_{}_{}D.png'.format(symbol.lower(), days_future, days_past)
         fig.savefig(file_address)
 
         return file_address, number_of_events, reference_change
     except:
         print('Exception occured')
 
-def pre_ah_change(symbol): 
+
+def EH_change(symbol):
     try:
-        url = 'https://www.marketwatch.com/investing/stock/'+symbol
+        url = 'https://www.marketwatch.com/investing/stock/' + symbol
         page = requests.get(url)
         page_content = page.content
-        soup = BeautifulSoup(page_content,'html.parser')
+        soup = BeautifulSoup(page_content, 'html.parser')
         if soup.select("span.change--percent--q>bg-quote")[0].get('session') == 'pre':
-            #Premarket
+            # Premarket
             pre_market_change = soup.select("span.change--percent--q>bg-quote")[0].get_text()
 
         elif soup.select("span.change--percent--q>bg-quote")[0].get('session') == 'after':
-            #Aftermarket
+            # Aftermarket
             after_market_change = soup.select("span.change--percent--q>bg-quote")[0].get_text()
-            
-        elif soup.select("span.change--percent--q>bg-quote")[0].get('session') ==  None:
-            #day market
-            day_market_change = soup.select("span.change--percent--q>bg-quote")[0].get_text()
-        
-        if soup.select("span.change--percent--q>bg-quote")[0].get('session') == 'pre':
-            msg = 'In the premarket '+ symbol+' changed '+ pre_market_change
-        elif soup.select("span.change--percent--q>bg-quote")[0].get('session') == 'after':
-            msg = 'In the afterhours '+ symbol+' changed '+ after_market_change
+
         elif soup.select("span.change--percent--q>bg-quote")[0].get('session') == None:
-            msg = 'The market is open and '+ symbol+' changed '+ day_market_change
+            # day market
+            day_market_change = soup.select("span.change--percent--q>bg-quote")[0].get_text()
+
+        if soup.select("span.change--percent--q>bg-quote")[0].get('session') == 'pre':
+            msg = ['pre', pre_market_change]
+        elif soup.select("span.change--percent--q>bg-quote")[0].get('session') == 'after':
+            msg = ['after', after_market_change]
+        #elif soup.select("span.change--percent--q>bg-quote")[0].get('session') == None:
+        #    msg = 'The market is open and ' + symbol + ' changed ' + day_market_change
         return msg
     except:
         print('Exception occured')

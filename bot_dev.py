@@ -1,17 +1,16 @@
-
 import os
 import random
 
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
-import bot_util
+import bot_util_dev
 
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = os.getenv('DISCORD_TOKEN_DEV')
 
-bot = commands.Bot(command_prefix='..')
+bot = commands.Bot(command_prefix='!!')
 
 @bot.command(name='alive', help='Sends a radom response')
 async def random_quote(ctx):
@@ -50,11 +49,21 @@ async def mean_return_kD(ctx, symbol: str, days_future: int, days_past: int):
     await ctx.send(file=discord.File(file_address))
 
 
-@bot.command(name='pre_ah_change', help='premarket/after hours change price.')
-async def pre_ah_change(ctx, symbol: str):
-    change_msg =  bot_util.pre_ah_change(symbol)
-    await ctx.send(change_msg)
-    
+@bot.command(name='eh_price', help='Premarket price')
+async def eh_price(ctx, symbols: str):
+    symbols_list = symbols.split(',')
+    print(symbols_list)
 
+    str = bot_util_dev.EH_change(symbols_list[0])
+    if str[0] == 'pre':
+        embed = discord.Embed(title='Premarket prices')
+    else:
+        embed = discord.Embed(title='Afterhour prices')
+
+    for symbol in symbols_list:
+        outputs = bot_util_dev.EH_change(symbol)
+        embed.add_field(name='{}          \a'.format(symbol.upper()), value=outputs[1], inline=True)
+
+    await ctx.send(embed=embed)
 
 bot.run(TOKEN)
