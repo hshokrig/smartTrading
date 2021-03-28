@@ -1,0 +1,3 @@
+# smartTrading
+
+Developmnt branch
