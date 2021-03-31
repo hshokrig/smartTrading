@@ -1,60 +1,41 @@
-
 import os
-import random
 
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
-import bot_util
-
+import utils.bot_util as util
 
 load_dotenv()
+#TOKEN_dev = os.getenv('DISCORD_TOKEN_DEV')
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-bot = commands.Bot(command_prefix='..')
+print(TOKEN)
 
-@bot.command(name='alive', help='Sends a radom response')
-async def random_quote(ctx):
-    messages = ['I am working!', 'Still working!', 'Really?', 'Still on, just back off!']
-
-    response = random.choice(messages)
-    await ctx.send(response)
-
-@bot.command(name='roll_dice', help='Simulates rolling dice. roll number of dices number of sides.')
-async def roll(ctx, number_of_dice: int, number_of_sides: int):
-    dice = [
-        str(random.choice(range(1, number_of_sides + 1)))
-        for _ in range(number_of_dice)
-    ]
-    await ctx.send(', '.join(dice))
+client = commands.Bot(command_prefix='..')
 
 
-@bot.command(name='prod', help='Simulates rolling dice.')
-async def prod(ctx, number_1: int, number_2: int):
-    await ctx.send(number_1*number_2)
-
-@bot.command(name='mean_return_1D', help='Simulates rolling dice.')
-async def mean_return_1D(ctx, symbol: str, days_future: int, changes: float):
-    file_address, number_of_events, reference_change = \
-        bot_util.mean_return_1D(symbol=symbol, days_future=days_future, reference=changes)
-
-    await ctx.send('{} events in the past with {:.2f}% daily changes'.format(number_of_events, changes))
-    await ctx.send(file=discord.File(file_address))
-
-@bot.command(name='mean_return_kD', help='Simulates rolling dice.')
-async def mean_return_kD(ctx, symbol: str, days_future: int, days_past: int):
-    file_address, number_of_events, reference_change = \
-        bot_util.mean_return_kD(symbol=symbol, days_future=days_future, days_past=days_past)
-
-    await ctx.send('{} events in the past with {:.2f}% changes over the last {} days'.format(number_of_events, reference_change, days_past))
-    await ctx.send(file=discord.File(file_address))
+@client.command(name='load', help='Load a cog')
+async def load(ctx, extension):
+    client.load_extension(f'cogs.{extension}')
+    print('load worked')
+    await ctx.send(f'Cog {extension} has been loaded. Try help to see all the new commands.')
 
 
-@bot.command(name='pre_ah_change', help='premarket/after hours change price.')
-async def pre_ah_change(ctx, symbol: str):
-    change_msg =  bot_util.pre_ah_change(symbol)
-    await ctx.send(change_msg)
-    
+@client.command(name='unload', help='Unload a cog')
+async def unload(ctx, extension):
+    client.unload_extension(f'cogs.{extension}')
+    await ctx.send(f'Cog {extension} has been unloaded.')
 
 
-bot.run(TOKEN)
+@client.command(name='reload', help='Reload a cog')
+async def reload(ctx, extension):
+    client.unload_extension(f'cogs.{extension}')
+    client.load_extension(f'cogs.{extension}')
+
+
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py') and filename != '__init__.py':
+        client.load_extension(f'cogs.{filename[:-3]}')
+
+
+client.run(TOKEN)
