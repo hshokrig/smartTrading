@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from utils import bot_util_dev as utils
+from utils import bot_util as utils
 
 
 class Screener(commands.Cog):

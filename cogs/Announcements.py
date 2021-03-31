@@ -2,7 +2,7 @@ import os
 import discord
 from discord.ext import commands
 from datetime import timedelta, datetime
-from utils import bot_util_dev as utils
+from utils import bot_util as utils
 
 
 class Announcements(commands.Cog):

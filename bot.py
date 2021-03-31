@@ -3,12 +3,15 @@ import os
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
-import utils.bot_util_dev as util
+import utils.bot_util as util
 
 load_dotenv()
-TOKEN_dev = os.getenv('DISCORD_TOKEN_DEV')
+#TOKEN_dev = os.getenv('DISCORD_TOKEN_DEV')
+TOKEN = os.getenv('DISCORD_TOKEN')
 
-client = commands.Bot(command_prefix='-')
+print(TOKEN)
+
+client = commands.Bot(command_prefix='..')
 
 
 @client.command(name='load', help='Load a cog')
@@ -35,4 +38,4 @@ for filename in os.listdir('./cogs'):
         client.load_extension(f'cogs.{filename[:-3]}')
 
 
-client.run(TOKEN_dev)
+client.run(TOKEN)
