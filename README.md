@@ -1,0 +1,3 @@
+# smartTrading
+
+test read me
