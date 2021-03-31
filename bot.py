@@ -8,8 +8,8 @@ import utils.bot_util as util
 load_dotenv()
 #TOKEN_dev = os.getenv('DISCORD_TOKEN_DEV')
 TOKEN = os.getenv('DISCORD_TOKEN')
-
-print(TOKEN)
+path = os.getenv('DISCORD_PATH')
+print(path)
 
 client = commands.Bot(command_prefix='..')
 
@@ -33,7 +33,7 @@ async def reload(ctx, extension):
     client.load_extension(f'cogs.{extension}')
 
 
-for filename in os.listdir('./cogs'):
+for filename in os.listdir(path+'/cogs'):
     if filename.endswith('.py') and filename != '__init__.py':
         client.load_extension(f'cogs.{filename[:-3]}')
 
