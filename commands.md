@@ -1,12 +1,26 @@
 # List of all commands
 All examples are with `prefix -`
 
+## Main comments 
+### help
+To get the list of all commands and classes. Use `-help`.
+
+### load
+This command activates a certain class (called Cog in Discord terminology) and its commands. You can get the list of cogs from `-help`. Example: `-load Screener` activates all commands of Screener class.
+
+### unload
+This command deactivates a certain class (called Cog in Discord terminology) and its commands. You can get the list of cogs from `-help`. Example: `-unload Screener` deactivates all commands of Screener class.
+
+### reload
+This command reloads (deactivate and then activate) a certain class (called Cog in Discord terminology). You can get the list of cogs from `-help`. Example: `-reload Screener` loads the most updated version of the Screener class.
+
+
 ## Initialization
 
 ### alive 
 Checks if the bot is alive. Example: `-alive`
 
-## Screeer 
+## Screener 
 This class includes a set of functions to screen the market.
 
 ### price
