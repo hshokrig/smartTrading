@@ -6,12 +6,12 @@ from dotenv import load_dotenv
 import utils.bot_util as util
 
 load_dotenv()
-#TOKEN_dev = os.getenv('DISCORD_TOKEN_DEV')
-TOKEN = os.getenv('DISCORD_TOKEN')
-path = os.getenv('DISCORD_PATH')
-print(path)
+TOKEN = os.getenv('DISCORD_TOKEN_DEV')
+#TOKEN = os.getenv('DISCORD_TOKEN')
+root_dir = os.getenv('DISCORD_PATH')
+print(root_dir)
 
-client = commands.Bot(command_prefix='..')
+client = commands.Bot(command_prefix='-')
 
 
 @client.command(name='load', help='Load a cog')
@@ -33,7 +33,7 @@ async def reload(ctx, extension):
     client.load_extension(f'cogs.{extension}')
 
 
-for filename in os.listdir(path+'/cogs'):
+for filename in os.listdir(root_dir+'/cogs'):
     if filename.endswith('.py') and filename != '__init__.py':
         client.load_extension(f'cogs.{filename[:-3]}')
 

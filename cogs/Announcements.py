@@ -45,9 +45,9 @@ class Announcements(commands.Cog):
         else:
             await ctx.send(embed=embed)
 
-    @commands.command(name='wl', help='Shows a watchlist.')
-    async def wl(self, ctx, period: str):
-        embed = discord.Embed(title='{} WATCHLIST'.format(period.upper()), colour = discord.Colour.blue())
+    @commands.command(name='mywl', help='Shows your watchlist.')
+    async def mywl(self, ctx, period: str):
+        embed = discord.Embed(title='{} WATCHLIST'.format(period.upper()), colour=discord.Colour.blue())
         cont = 1
         count, accuracy = 0, 0
 
@@ -56,10 +56,9 @@ class Announcements(commands.Cog):
             return m.author == ctx.author and m.channel == ctx.channel
 
         while cont:
-            await ctx.send('Write "stop" to stop, otherwise enter a new WL entry as <ticker> // <message>')
+            await ctx.send('Write "stop" to stop, otherwise enter a new WL entry as <ticker> / <message>')
             msg = await self.client.wait_for('message', check=check)
             contents = msg.content.split('/')
-            print(contents)
 
             if contents[0] == 'stop':
                 cont = 0
@@ -67,14 +66,11 @@ class Announcements(commands.Cog):
             else:
                 embed.add_field(name='{}'.format(contents[0].upper()), value='{} '.format(contents[1]), inline=False)
 
-        txt = msg.created_at.strftime('Today at %-I:%M %p' if ctx.message.created_at.date() == datetime.today().date()
-                                      else 'Yesterday at %-I:%M %p' if ctx.message.created_at.date() == (datetime.today() - timedelta(1)).date()
-                                      else '%d/%m/%Y')
-        embed.set_footer(icon_url=ctx.message.author.avatar_url, text='{} signal | {}'.format(ctx.author.name, txt))
+        embed.timestamp = datetime.utcnow()
+        embed.set_footer(icon_url=ctx.message.author.avatar_url, text='{} signalc'.format(ctx.author.name))
 
         ## it should be replaced with a channel ID of this server
         channel = self.client.get_channel(817862207739658282)
-        print(channel)
         if channel:            # if channel is exist
             await channel.send(embed=embed)
         else:

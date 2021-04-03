@@ -1,0 +1,181 @@
+{
+    "TSLA": [
+        "TSLA",
+        "NIO",
+        "XPEV",
+        "SOLO",
+        "LI",
+        "AYRO"
+    ],
+    "NIO": [
+        "XPEV",
+        "LI"
+    ],
+    "TLRY": [
+        "TLRY",
+        "SNDL",
+        "APHA",
+        "CGC",
+        "ACB",
+        "HEXO",
+        "IGC"
+    ],
+    "SNDL": [
+        "SNDL",
+        "TLRY",
+        "IGC"
+    ],
+    "TKAT": [
+        "TKAT",
+        "OCG",
+        "IMTE",
+        "YVR",
+        "WKEY",
+        "HOFV",
+        "MFH"
+    ],
+    "HOFV": [
+        "HOFV",
+        "TKAT",
+        "OCG",
+        "IMTE",
+        "YVR",
+        "WKEY",
+        "MFH"
+    ],
+    "WKEY": [
+        "WKEY",
+        "TKAT",
+        "OCG",
+        "IMTE",
+        "YVR",
+        "HOFV",
+        "MFH"
+    ],
+    "PRNT": [
+        "PRNT",
+        "DDD",
+        "NNDM"
+    ],
+    "DDD": [
+        "DDD",
+        "NNDM",
+        "PRNT"
+    ],
+    "NNDM": [
+        "NNDM",
+        "DDD",
+        "PRNT"
+    ],
+    "RIOT": [
+        "RIOT",
+        "MARA",
+        "SOS",
+        "NXTD",
+        "FTFT",
+        "BTBT",
+        "CNET",
+        "NCTY"
+    ],
+    "MARA": [
+        "MARA",
+        "RIOT",
+        "SOS",
+        "NXTD",
+        "FTFT",
+        "BTBT",
+        "CNET",
+        "NCTY"
+    ],
+    "SOS": [
+        "SOS",
+        "RIOT",
+        "MARA",
+        "NXTD",
+        "FTFT",
+        "BTBT",
+        "CNET",
+        "NCTY"
+    ],
+    "FCEL": [
+        "FCEL",
+        "PLUG",
+        "CBAT"
+    ],
+    "PLUG": [
+        "PLUG",
+        "FCEL",
+        "CBAT"
+    ],
+    "SPCE": [
+        "SPCE",
+        "MAXR",
+        "IRDM",
+        "GILT"
+    ],
+    "MAXR": [
+        "MAXR",
+        "SPCE",
+        "IRDM",
+        "GILT"
+    ],
+    "IRDM": [
+        "IRDM",
+        "SPCE",
+        "MAXR",
+        "GILT"
+    ],
+    "GILT": [
+        "GILT",
+        "SPCE",
+        "MAXR",
+        "IRDM"
+    ],
+    "GME": [
+        "GME",
+        "KOSS",
+        "EXPR",
+        "AMC"
+    ],
+    "KOSS": [
+        "KOSS",
+        "GME",
+        "EXPR",
+        "AMC"
+    ],
+    "EXPR": [
+        "EXPR",
+        "GME",
+        "KOSS",
+        "AMC"
+    ],
+    "AMC": [
+        "AMC",
+        "GME",
+        "KOSS",
+        "EXPR"
+    ],
+    "BYND": [
+        "BYND",
+        "TTCF"
+    ],
+    "TTCF": [
+        "TTCF",
+        "BYND"
+    ],
+    "CTRM": [
+        "CTRM",
+        "GLBS",
+        "SHIP"
+    ],
+    "GLBS": [
+        "GLBS",
+        "CTRM",
+        "SHIP"
+    ],
+    "SHIP": [
+        "SHIP",
+        "CTRM",
+        "GLBS"
+    ]
+}

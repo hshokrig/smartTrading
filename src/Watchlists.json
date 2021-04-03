@@ -1,0 +1,182 @@
+{
+    "ev": {
+        "names": [
+            "ev",
+            "electrical vehicle",
+            "cars"
+        ],
+        "symbols": [
+            "TSLA",
+            "NIO",
+            "XPEV",
+            "SOLO",
+            "LI",
+            "AYRO"
+        ]
+    },
+    "weeds": {
+        "names": [
+            "weed",
+            "weeds",
+            "canopy",
+            "cannabis",
+            "marijuana",
+            "pot",
+            "pots"
+        ],
+        "symbols": [
+            "TLRY",
+            "APHA",
+            "CRON",
+            "CGC",
+            "ACB",
+            "HEXO",
+            "SNDL",
+            "IGC"
+        ]
+    },
+    "NFT": {
+        "names": [
+            "nft",
+            "art"
+        ],
+        "symbols": [
+            "TKAT",
+            "OCG",
+            "IMTE",
+            "YVR",
+            "WKEY",
+            "HOFV",
+            "MFH"
+        ]
+    },
+    "3D": {
+        "names": [
+            "3d",
+            "threed",
+            "print",
+            "printing",
+            "3dprinting",
+            "3d printing"
+        ],
+        "symbols": [
+            "PRNT",
+            "DDD",
+            "NNDM"
+        ]
+    },
+    "crypto": {
+        "names": [
+            "crypto",
+            "btc",
+            "bitcoin",
+            "cryptocurrency",
+            "btc mining"
+        ],
+        "symbols": [
+            "RIOT",
+            "MARA",
+            "SOS",
+            "NXTD",
+            "FTFT",
+            "BTBT",
+            "CNET",
+            "NCTY"
+        ]
+    },
+    "battery": {
+        "names": [
+            "battery",
+            "charging",
+            "clean energy",
+            "solar",
+            "chargers"
+        ],
+        "symbols": [
+            "FCEL",
+            "PLUG",
+            "CBAT"
+        ]
+    },
+    "oiler": {
+        "names": [
+            "oilers",
+            "oiler",
+            "oil"
+        ],
+        "symbols": [
+            "XOM",
+            "GBR",
+            "USEG",
+            "PED"
+        ]
+    },
+    "rare resource": {
+        "names": [
+            "rare resource",
+            "gold",
+            "copper",
+            "nikel",
+            "precious metal",
+            "miner",
+            "mining"
+        ],
+        "symbols": [
+            "NAK",
+            "GSV",
+            "CBAT"
+        ]
+    },
+    "space": {
+        "names": [
+            "space",
+            "satellite"
+        ],
+        "symbols": [
+            "SPCE",
+            "MAXR",
+            "IRDM",
+            "GILT",
+            "GSAT",
+            "VISL"
+        ]
+    },
+    "wsb": {
+        "names": [
+            "wsb"
+        ],
+        "symbols": [
+            "GME",
+            "KOSS",
+            "EXPR",
+            "AMC"
+        ]
+    },
+    "sustainability": {
+        "names": [
+            "sustainability",
+            "sustainable foods",
+            "green food",
+            "alternative meat"
+        ],
+        "symbols": [
+            "BYND",
+            "TTCF",
+            "NEXE",
+            "VRYYF"
+        ]
+    },
+    "shippers": {
+        "names": [
+            "ship",
+            "shipper",
+            "shippers"
+        ],
+        "symbols": [
+            "CTRM",
+            "GLBS",
+            "SHIP",
+            "SINO"
+        ]
+    }
+}

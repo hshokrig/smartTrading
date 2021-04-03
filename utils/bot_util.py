@@ -4,10 +4,17 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 import os
+from dotenv import load_dotenv
 
 import requests
 from bs4 import BeautifulSoup
 import six
+
+
+def get_root_dir():
+    load_dotenv()
+    return os.getenv('DISCORD_PATH')
+
 
 def get_history(symbol):
     day_technicals = yf.Ticker(symbol).history(interval='1d', period='10y', actions=False)
@@ -17,9 +24,10 @@ def get_history(symbol):
 
 
 def mean_return_1D(symbol, days_future=30, reference=10000, price_change_bound_tr=0.2):
-    path = './src/datasets/{}_daily.csv'.format(symbol)
-    if os.path.isfile(path):
-        data = pd.read_csv(os.getcwd()+'/src/datasets/{}_daily.csv'.format(symbol))
+    root_dir = get_root_dir()
+    path_ = '{}/src/datasets/{}_daily.csv'.format(root_dir, symbol)
+    if os.path.isfile(path_):
+        data = pd.read_csv(path_)
     else:
         data = get_history(symbol)
 
@@ -64,9 +72,10 @@ def mean_return_1D(symbol, days_future=30, reference=10000, price_change_bound_t
 
 
 def mean_return_kD(symbol, days_future=30, days_past=5, price_change_bound_tr=0.2):
-    path = os.getcwd()+'/src/datasets/{}_daily.csv'.format(symbol)
-    if os.path.isfile(path):
-        data = pd.read_csv(os.getcwd()+'/src/datasets/{}_daily.csv'.format(symbol))
+    root_dir = get_root_dir()
+    path_ = '{}/src/datasets/{}_daily.csv'.format(root_dir, symbol)
+    if os.path.isfile(path_):
+        data = pd.read_csv(path_)
     else:
         data = get_history(symbol)
 
@@ -107,30 +116,22 @@ def mean_return_kD(symbol, days_future=30, days_past=5, price_change_bound_tr=0.
         print('Exception occured')
 
 
-def EH_change(symbol):
+def get_price(symbol):
     try:
         url = 'https://www.marketwatch.com/investing/stock/' + symbol
         page = requests.get(url)
         page_content = page.content
         soup = BeautifulSoup(page_content, 'html.parser')
-        if soup.select("span.change--percent--q>bg-quote")[0].get('session') == 'pre':
-            # Premarket
-            pre_market_change = soup.select("span.change--percent--q>bg-quote")[0].get_text()
+        if soup.select("span.change--percent--q>bg-quote")[0].get('session') == 'pre':        # Premarket
+            market_hour = 'pre'
+        elif soup.select("span.change--percent--q>bg-quote")[0].get('session') == 'after':    # Aftermarket
+            market_hour = 'after'
+        else:                                                                                 # day market
+            market_hour = 'RH'
 
-        elif soup.select("span.change--percent--q>bg-quote")[0].get('session') == 'after':
-            # Aftermarket
-            after_market_change = soup.select("span.change--percent--q>bg-quote")[0].get_text()
+        price_change = soup.select("span.change--percent--q>bg-quote")[0].get_text()
 
-        elif soup.select("span.change--percent--q>bg-quote")[0].get('session') == None:
-            # day market
-            day_market_change = soup.select("span.change--percent--q>bg-quote")[0].get_text()
+        return market_hour, price_change
 
-        if soup.select("span.change--percent--q>bg-quote")[0].get('session') == 'pre':
-            msg = ['pre', pre_market_change]
-        elif soup.select("span.change--percent--q>bg-quote")[0].get('session') == 'after':
-            msg = ['after', after_market_change]
-        #elif soup.select("span.change--percent--q>bg-quote")[0].get('session') == None:
-        #    msg = 'The market is open and ' + symbol + ' changed ' + day_market_change
-        return msg
     except:
         print('Exception occured')
