@@ -46,7 +46,10 @@ class Screener(commands.Cog):
                 exist = 1
                 prices = dict.fromkeys(self.wl[wl]['symbols'])
                 for ticker in self.wl[wl]['symbols']:
-                    market_hour, prices[ticker] = utils.get_price(ticker)
+                    try:
+                        market_hour, prices[ticker] = utils.get_price(ticker)
+                    except:
+                        market_hour, prices[ticker] = 'RH', 'n/a'
 
         if exist == 0:
             await ctx.send('I do not have watchlist {}'.format(wl_name.upper()))
