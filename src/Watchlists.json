@@ -126,8 +126,9 @@
         ],
         "symbols": [
             "NAK",
+            "USAU",
             "GSV",
-            "CBAT"
+            "CBAT",
         ]
     },
     "space": {
