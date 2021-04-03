@@ -45,6 +45,10 @@ List of available watchlists:
 - WSB
 - Sustainability
 
+### sympathy
+This commands returns sympathys plays of a ticker. Use `-sympathy mara`
+
+
 ## Statistics
 This class includes a list of functions for statistical analysis. 
 
