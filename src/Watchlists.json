@@ -62,7 +62,10 @@
         "symbols": [
             "PRNT",
             "DDD",
-            "NNDM"
+            "NNDM",
+            "ONVO",
+            "CLGN",
+            "SSYS"
         ]
     },
     "crypto": {
