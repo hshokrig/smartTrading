@@ -177,5 +177,19 @@
         "SHIP",
         "CTRM",
         "GLBS"
+    ],
+    "GLSI": [
+        "GLSI",
+        "SLS",
+        "GOVX",
+        "GENE"
+    ],
+    "PETZ": [
+        "PETZ",
+        "DOGZ"
+    ],
+    "DOGZ": [
+        "DOGZ",
+        "PETZ"
     ]
 }
