@@ -184,6 +184,18 @@
         "GOVX",
         "GENE"
     ],
+    "SLS": [
+        "SLS",
+        "GLSI",
+        "GOVX",
+        "GENE"
+    ],
+    "GOVX": [
+        "GOVX",
+        "SLS",
+        "GLSI",
+        "GENE"
+    ],
     "PETZ": [
         "PETZ",
         "DOGZ"
