@@ -173,12 +173,6 @@
         "CTRM",
         "SHIP"
     ],
-    "GLSI": [
-        "GLSI",
-        "SLS",
-        "GOVX",
-        "GENE"
-    ],
     "SHIP": [
         "SHIP",
         "CTRM",
@@ -193,6 +187,16 @@
     "PETZ": [
         "PETZ",
         "DOGZ"
+    ],
+    "EEIQ": [
+        "EEIQ",
+        "WAFU",
+        "CELC"
+    ],
+    "WAFU": [
+        "WAFU",
+        "EEIQ",
+        "CELC"
     ],
     "DOGZ": [
         "DOGZ",

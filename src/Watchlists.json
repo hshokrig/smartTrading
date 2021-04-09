@@ -126,9 +126,8 @@
         ],
         "symbols": [
             "NAK",
-            "USAU",
             "GSV",
-            "CBAT",
+            "CBAT"
         ]
     },
     "space": {
@@ -168,6 +167,20 @@
             "TTCF",
             "NEXE",
             "VRYYF"
+        ]
+    },
+    "China edu": {
+        "names": [
+            "china edu",
+            "chinaedu",
+            "eeiq",
+            "wafu",
+            "edu"
+        ],
+        "symbols": [
+            "EEIQ",
+            "WAFU",
+            "CELC"
         ]
     },
     "shippers": {
